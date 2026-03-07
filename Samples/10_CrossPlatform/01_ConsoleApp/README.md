@@ -19,15 +19,18 @@ This console application demonstrates the use of StockSharp, a trading and algor
 
 ## Configuration
 
-Before running the application, ensure you provide your Coinbase API key and secret in the code, as these are essential for authentication. Replace `<Your key>` and `<Your secret>` with your actual Coinbase credentials:
+Before running the application, ensure you provide your Coinbase API key and secret for authentication. The project supports reading these from an `appsettings.json` file to avoid hardcoding credentials.
 
-```csharp
-connector.Adapter.InnerAdapters.Add(new Coinbase.CoinbaseMessageAdapter(connector.TransactionIdGenerator)
+1. Copy `appsettings.example.json` to `appsettings.json`
+2. Replace the placeholder values with your actual Coinbase credentials (for Advanced Trade API, the Key is the `name` and the Secret is the multi-line `privateKey` from your downloaded JSON file).
+
+```json
 {
-    Key = "<Your key>".Secure(),
-    Secret = "<Your secret>".Secure(),
-    //IsDemo = true
-});
+  "Coinbase": {
+    "Key": "organizations/.../apiKeys/...",
+    "Secret": "-----BEGIN EC PRIVATE KEY-----\n...\n-----END EC PRIVATE KEY-----\n"
+  }
+}
 ```
 
 ## Usage
@@ -43,7 +46,7 @@ Follow the on-screen instructions to interact with Coinbase through the StockSha
 ## Features
 
 - **Connection Handling**: Connects to Coinbase and handles connection errors.
-- **Security Lookup**: Queries Coinbase for securities. Default example uses "BTCUSDT" futures.
+- **Security Lookup**: Queries Coinbase for securities. Default example uses "BTC-USD" crypto spot.
 - **Portfolio Monitoring**: Monitors and displays portfolio and position updates.
 - **Market Depth Subscription**: Subscribes to and displays market depth (best bid and ask) for selected securities.
 - **Order Placement**: Allows placing buy orders based on the current market depth.

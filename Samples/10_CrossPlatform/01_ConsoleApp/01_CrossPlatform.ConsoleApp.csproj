@@ -4,5 +4,12 @@
     <PackageReference Include="StockSharp.Algo" Version="$(StockSharpVer)" />
     <PackageReference Include="StockSharp.Coinbase" Version="$(StockSharpVer)" />
     <PackageReference Include="Ecng.Common" Version="1.0.*" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MsExtensionsVer)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="$(MsExtensionsVer)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

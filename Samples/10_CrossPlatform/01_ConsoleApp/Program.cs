@@ -6,6 +6,8 @@ using System.Linq;
 using Ecng.Common;
 using Ecng.Logging;
 
+using Microsoft.Extensions.Configuration;
+
 using StockSharp.Algo;
 using StockSharp.BusinessEntities;
 using StockSharp.Messages;
@@ -14,6 +16,10 @@ static class Program
 {
 	private static void Main()
 	{
+		var configuration = new ConfigurationBuilder()
+			.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+			.Build();
+
 		var logger = new LogManager();
 		logger.Listeners.Add(new ConsoleLogListener());
 
@@ -27,10 +33,13 @@ static class Program
 		// !!! DO NOT FORGET ADD NUGET PACKAGE WITH REQUIRED CONNECTOR !!!
 		// https://stocksharp.com/products/nuget_manual/#privateserver
 		//
+		var key = configuration["Coinbase:Key"] ?? "<Your key>";
+		var secret = configuration["Coinbase:Secret"] ?? "<Your secret>";
+
 		connector.Adapter.InnerAdapters.Add(new Coinbase.CoinbaseMessageAdapter(connector.TransactionIdGenerator)
 		{
-			Key = "<Your key>".Secure(),
-			Secret = "<Your secret>".Secure(),
+			Key = key.Secure(),
+			Secret = secret.Secure(),
 			//IsDemo = true
 		});
 
