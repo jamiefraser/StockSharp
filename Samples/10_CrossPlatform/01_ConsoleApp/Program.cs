@@ -103,10 +103,17 @@ static class Program
 
 		var bestBidPrice = lastDepth?.GetBestBid()?.Price;
 
+		var portfolio = connector.Portfolios.FirstOrDefault();
+		if (portfolio == null)
+		{
+			Console.WriteLine("No portfolios found. Cannot place order.");
+			return;
+		}
+
 		var order = new Order
 		{
 			Security = security,
-			Portfolio = connector.Portfolios.First(),
+			Portfolio = portfolio,
 			Price = bestBidPrice ?? 0,
 			Type = bestBidPrice == null ? OrderTypes.Market : OrderTypes.Limit,
 			Volume = 1m,
