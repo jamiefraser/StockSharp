@@ -22,12 +22,12 @@ static class Program
 
 		//
 		// !!! IMPORTANT !!!
-		// The code show how to connect to Binance.
+		// The code show how to connect to Coinbase.
 		// Use your own adapter and proper setup
 		// !!! DO NOT FORGET ADD NUGET PACKAGE WITH REQUIRED CONNECTOR !!!
 		// https://stocksharp.com/products/nuget_manual/#privateserver
 		//
-		connector.Adapter.InnerAdapters.Add(new Binance.BinanceMessageAdapter(connector.TransactionIdGenerator)
+		connector.Adapter.InnerAdapters.Add(new Coinbase.CoinbaseMessageAdapter(connector.TransactionIdGenerator)
 		{
 			Key = "<Your key>".Secure(),
 			Secret = "<Your secret>".Secure(),
@@ -55,7 +55,7 @@ static class Program
 
 			security = securities.First();
 		};
-		connector.Subscribe(new(new SecurityLookupMessage { SecurityId = new() { SecurityCode = "BTCUSDT" }, SecurityType = SecurityTypes.Future }));
+		connector.Subscribe(new(new SecurityLookupMessage { SecurityId = new() { SecurityCode = "BTC-USD" }, SecurityType = SecurityTypes.CryptoCurrency }));
 		Console.ReadLine();
 
 		//--------------------------Portfolio--------------------------------------------------------------------------------
