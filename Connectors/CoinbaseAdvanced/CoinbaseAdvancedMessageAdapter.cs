@@ -22,6 +22,7 @@ public partial class CoinbaseAdvancedMessageAdapter : MessageAdapter
 {
 	private CoinbaseClient _client;
 	private CancellationTokenSource _cancellationTokenSource;
+	private readonly Dictionary<string, long> _orderIdToTransId = new();
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="CoinbaseAdvancedMessageAdapter"/>.
