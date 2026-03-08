@@ -7,7 +7,9 @@
     <Project Path="Connectors/Bittrex/Bittrex.csproj" />
     <Project Path="Connectors/Btce/Btce.csproj" />
     <Project Path="Connectors/Coinbase/Coinbase.csproj" />
-    <Project Path="Connectors/CoinbaseAdvanced/CoinbaseAdvanced.csproj" Id="5ccd8394-aee9-47a4-8495-1e03a278618d" />
+    <Project Path="Connectors/CoinbaseAdvanced/CoinbaseAdvanced.csproj" Id="5ccd8394-aee9-47a4-8495-1e03a278618d">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
     <Project Path="Connectors/FTX/FTX.csproj" />
     <Project Path="Connectors/PrizmBit/PrizmBit.csproj" />
     <Project Path="Connectors/Tinkoff/Tinkoff.csproj" />
